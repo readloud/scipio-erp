@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is subject to the terms and conditions defined in the
+files 'LICENSE' and 'NOTICE', which are part of this source
+code package.
+-->
+
+<screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
+  
+  <screen name="DashboardServerTraffic">
+      <section>
+            <actions> 
+                <set field="chartType" value="bar"/>
+                <set field="chartValue" value="count"/>
+                <set field="chartData" value="day"/>
+                <set field="chartLibrary" value="chart"/>
+                <set field="chartIntervalScope" value="day"/> <!-- hour|day|week|month|year -->
+                <set field="chartIntervalCount" value="1"/>     <!-- Look back x hours/days/weeks/months/years -->
+                <script location="component://webtools/script/com/ilscipio/data/StatsServerTraffic.groovy"/>
+                <set field="title" value="${uiLabelMap.CommonRequests} (${uiLabelMap.CommonPerDay})"/>
+            </actions>
+            <widgets>
+                <platform-specific>
+                    <html><html-template location="component://webtools/webapp/webtools/stats/statsServerTraffic.ftl"/></html>
+                </platform-specific>
+            </widgets>
+      </section>
+  </screen>  
+</screens>
+
